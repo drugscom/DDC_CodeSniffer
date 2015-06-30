@@ -19,6 +19,7 @@
     <exclude name="PEAR.Commenting.FileComment.WrongStyle" />
     <exclude name="PEAR.Commenting.FunctionComment.Missing" />
     <exclude name="PEAR.Commenting.FunctionComment.WrongStyle" />
+    <exclude name="PEAR.Commenting.FunctionComment.MissingParamTag" />
     <exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine" />
     <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
     <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
@@ -38,6 +39,8 @@
     <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
     <exclude name="Generic.PHP.DisallowShortOpenTag.Found" />
     <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+    <exclude name="Generic.Commenting.DocComment.TagValueIndent" />
+    <exclude name="Generic.Commenting.DocComment.NonParamGroup" />
   </rule>
 
 </ruleset>
