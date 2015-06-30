@@ -8,7 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -24,9 +24,9 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractPatternSniff', true) === fal
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @version   Release: 1.4.0
+ * @version   Release: 2.3.3
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 class DDC_Sniffs_ControlStructures_ControlSignatureSniff extends PHP_CodeSniffer_Standards_AbstractPatternSniff
@@ -43,7 +43,7 @@ class DDC_Sniffs_ControlStructures_ControlSignatureSniff extends PHP_CodeSniffer
     /**
      * Returns the patterns that this test wishes to verify.
      *
-     * @return array(string)
+     * @return string[]
      */
     protected function getPatterns()
     {
@@ -58,6 +58,7 @@ class DDC_Sniffs_ControlStructures_ControlSignatureSniff extends PHP_CodeSniffer
                 // correctly, so we have
                 // DDC_Sniffs_ControlStructures_ElseNewlineSniff to
                 // cover that.
+                'else if (...) {EOL',
                 'elseif (...) {EOL',
                 'else {EOL',
                 'do {EOL',
@@ -67,5 +68,3 @@ class DDC_Sniffs_ControlStructures_ControlSignatureSniff extends PHP_CodeSniffer
 
 
 }//end class
-
-?>
