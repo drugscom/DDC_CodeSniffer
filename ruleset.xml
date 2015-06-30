@@ -29,6 +29,7 @@
     <exclude name="PEAR.Functions.FunctionDeclaration.SpaceAfterFunction" />
     <exclude name="PEAR.NamingConventions.ValidClassName.Invalid" />
     <exclude name="PEAR.NamingConventions.ValidClassName.StartWithCaptial" />
+    <exclude name="PEAR.NamingConventions.ValidFunctionName.FunctionNoCapital" />
     <exclude name="PEAR.NamingConventions.ValidFunctionName.NotCamelCaps" />
     <exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
     <exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
