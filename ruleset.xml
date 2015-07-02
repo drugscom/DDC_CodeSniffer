@@ -36,6 +36,8 @@
     <exclude name="PEAR.Commenting.FunctionComment.MissingLicenseTag" />
     <exclude name="PEAR.Commenting.FunctionComment.MissingLinkTag" />
     <exclude name="PEAR.Commenting.FunctionComment.MissingVersion" />
+    <exclude name="PEAR.Commenting.FunctionComment.MissingParamComment" />
+    <exclude name="PEAR.Commenting.FunctionComment.MissingReturnType" />
     <exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine" />
     <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
     <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
@@ -51,6 +53,7 @@
     <exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
     <exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
     <exclude name="PEAR.NamingConventions.ValidVariableName.ScopeNotCamelCaps" />
+    <exclude name="PEAR.NamingConventions.ValidVariableName.PublicUnderscore" />
     <exclude name="PEAR.WhiteSpace.ScopeClosingBrace.BreakIdent" />
     <exclude name="PEAR.WhiteSpace.ScopeIndent.Incorrect" />
     <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact" />
