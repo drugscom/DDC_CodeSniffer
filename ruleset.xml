@@ -63,8 +63,7 @@
     <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
     <exclude name="Generic.PHP.DisallowShortOpenTag.Found" />
     <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
-    <exclude name="Generic.Commenting.DocComment.TagValueIndent" />
-    <exclude name="Generic.Commenting.DocComment.NonParamGroup" />
+    <exclude name="Generic.Commenting.DocComment"/>
   </rule>
 
 </ruleset>
