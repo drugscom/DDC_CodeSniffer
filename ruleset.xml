@@ -13,11 +13,18 @@
     <exclude name="PEAR.Commenting.ClassComment.MissingTag" />
     <exclude name="PEAR.Commenting.ClassComment.TagIndent" />
     <exclude name="PEAR.Commenting.ClassComment.WrongStyle" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag" />
+    <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag" />
     <exclude name="PEAR.Commenting.FileComment.Missing" />
     <exclude name="PEAR.Commenting.FileComment.MissingTag" />
     <exclude name="PEAR.Commenting.FileComment.TagIndent"/>
     <exclude name="PEAR.Commenting.FileComment.WrongStyle" />
     <exclude name="PEAR.Commenting.FileComment.InvalidAuthors" />
+    <exclude name="PEAR.Commenting.FileComment.MissingLinkTag" />
+    <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag" />
+    <exclude name="PEAR.Commenting.FileComment.MissingVersion" />
+    <exclude name="PEAR.Commenting.FileComment.MissingCategoryTag" />
     <exclude name="PEAR.Commenting.FunctionComment.Missing" />
     <exclude name="PEAR.Commenting.FunctionComment.WrongStyle" />
     <exclude name="PEAR.Commenting.FunctionComment.MissingParamTag" />
@@ -40,6 +47,7 @@
     <exclude name="PEAR.NamingConventions.ValidClassName.StartWithCaptial" />
     <exclude name="PEAR.NamingConventions.ValidFunctionName.FunctionNoCapital" />
     <exclude name="PEAR.NamingConventions.ValidFunctionName.NotCamelCaps" />
+    <exclude name="PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps" />
     <exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
     <exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
     <exclude name="PEAR.NamingConventions.ValidVariableName.ScopeNotCamelCaps" />
