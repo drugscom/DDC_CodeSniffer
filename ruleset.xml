@@ -46,7 +46,6 @@
     <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
     <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
     <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
-    <exclude name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine" />
     <exclude name="PEAR.Functions.FunctionDeclaration.NewlineBeforeOpenBrace" />
     <exclude name="PEAR.Functions.FunctionDeclaration.SpaceAfterFunction" />
     <exclude name="PEAR.NamingConventions.ValidClassName.Invalid" />
