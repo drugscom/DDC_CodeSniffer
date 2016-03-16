@@ -59,8 +59,11 @@
     <exclude name="PEAR.NamingConventions.ValidVariableName.ScopeNotCamelCaps" />
     <exclude name="PEAR.NamingConventions.ValidVariableName.PublicUnderscore" />
     <exclude name="PEAR.WhiteSpace.ScopeClosingBrace.BreakIdent" />
+    <exclude name="PEAR.WhiteSpace.ScopeClosingBrace.BreakIndent" />
     <exclude name="PEAR.WhiteSpace.ScopeIndent.Incorrect" />
     <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact" />
+    <exclude name="PEAR.WhiteSpace.ScopeClosingBrace.Indent" />
+
     <exclude name="Generic.Files.LineLength.TooLong" />
     <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
     <exclude name="Generic.PHP.DisallowShortOpenTag.Found" />
