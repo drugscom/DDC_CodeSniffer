@@ -68,6 +68,7 @@
     <exclude name="Generic.PHP.DisallowShortOpenTag.Found" />
     <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
     <exclude name="Generic.Commenting.DocComment.MissingShort"/>
+    <exclude name="PEAR.Functions.FunctionCallSignature.EmptyLine"/>
   </rule>
 
 </ruleset>
