@@ -65,7 +65,6 @@
 
     <exclude name="Generic.Files.LineLength.TooLong" />
     <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
-    <exclude name="Generic.PHP.DisallowShortOpenTag.Found" />
     <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
     <exclude name="Generic.Commenting.DocComment.MissingShort"/>
     <exclude name="Generic.Commenting.DocComment.NonParamGroup"/>
