@@ -1,6 +1,7 @@
 {
   "name": "drugscom/ddc_codesniffer",
   "description": "Codesniffer standard for DDC",
+  "type" : "phpcodesniffer-standard",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
@@ -9,7 +10,8 @@
       "email": "nick.lemouton@drugs.com"
     }
   ],
-  "require-dev": {
+  "require": {
+    "php" : ">7.0",
     "squizlabs/php_codesniffer": "3.4.2"
   }
 }
