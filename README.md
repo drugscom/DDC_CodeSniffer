@@ -8,7 +8,8 @@ The documentation for PHP\_CodeSniffer is available on the [Github wiki](https:/
 * Add the following lines to your `composer.json` file.
     ```json
     "require-dev": {
-        "drugscom/ddc_codesniffer": "*"
+        "drugscom/ddc_codesniffer": "*",
+        "phpcompatibility/php-compatibility": "*",
     },
     "scripts": {
         "post-install-cmd": [
