@@ -31,12 +31,13 @@ class ControlSignatureSniff extends AbstractPatternSniff
 		return [
 			'do {EOL...} while (...);EOL',
 			'while (...) {EOL',
+			'switch (...) {EOL',
 			'for (...) {EOL',
 			'if (...) {EOL',
 			'foreach (...) {EOL',
-			'} else if (...) {EOL',
-			'} elseif (...) {EOL',
-			'} else {EOL',
+			'else if (...) {EOL',
+			'elseif (...) {EOL',
+			'else {EOL',
 			'do {EOL',
 		];
 	}//end getPatterns()
