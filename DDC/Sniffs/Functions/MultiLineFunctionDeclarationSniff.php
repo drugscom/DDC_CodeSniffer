@@ -14,6 +14,8 @@ namespace PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAllmanSniff;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceKernighanRitchieSniff;
 use PHP_CodeSniffer\Util\Tokens;
 
 class MultiLineFunctionDeclarationSniff implements Sniff
@@ -290,7 +292,14 @@ class MultiLineFunctionDeclarationSniff implements Sniff
 	{
 		// We do everything the parent sniff does, and a bit more because we
 		// define multi-line declarations a bit differently.
-		parent::processSingleLineDeclaration($phpcsFile, $stackPtr, $tokens);
+		if ($tokens[$stackPtr]['code'] === T_CLOSURE) {
+			$sniff = new OpeningFunctionBraceKernighanRitchieSniff();
+		} else {
+			$sniff = new OpeningFunctionBraceBsdAllmanSniff();
+		}
+
+		$sniff->checkClosures = true;
+		$sniff->process($phpcsFile, $stackPtr);
 
 		$openingBracket = $tokens[$stackPtr]['parenthesis_opener'];
 		$closingBracket = $tokens[$stackPtr]['parenthesis_closer'];
@@ -335,7 +344,77 @@ class MultiLineFunctionDeclarationSniff implements Sniff
 	public function processMultiLineDeclaration($phpcsFile, $stackPtr, $tokens)
 	{
 		// We do everything the parent sniff does, and a bit more.
-		parent::processMultiLineDeclaration($phpcsFile, $stackPtr, $tokens);
+		$this->processArgumentList($phpcsFile, $stackPtr, $this->indent);
+
+		$closeBracket = $tokens[$stackPtr]['parenthesis_closer'];
+		if ($tokens[$stackPtr]['code'] === T_CLOSURE) {
+			$use = $phpcsFile->findNext(T_USE, ($closeBracket + 1), $tokens[$stackPtr]['scope_opener']);
+			if ($use !== false) {
+				$open         = $phpcsFile->findNext(T_OPEN_PARENTHESIS, ($use + 1));
+				$closeBracket = $tokens[$open]['parenthesis_closer'];
+			}
+		}
+
+		if (isset($tokens[$stackPtr]['scope_opener']) === false) {
+			return;
+		}
+
+		// The opening brace needs to be one space away from the closing parenthesis.
+		$opener = $tokens[$stackPtr]['scope_opener'];
+		if ($tokens[$opener]['line'] !== $tokens[$closeBracket]['line']) {
+			$error = 'The closing parenthesis and the opening brace of a multi-line function declaration must be on the same line';
+			$fix   = $phpcsFile->addFixableError($error, $opener, 'NewlineBeforeOpenBrace');
+			if ($fix === true) {
+				$prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), $closeBracket, true);
+				$phpcsFile->fixer->beginChangeset();
+				$phpcsFile->fixer->addContent($prev, ' {');
+
+				// If the opener is on a line by itself, removing it will create
+				// an empty line, so just remove the entire line instead.
+				$prev = $phpcsFile->findPrevious(T_WHITESPACE, ($opener - 1), $closeBracket, true);
+				$next = $phpcsFile->findNext(T_WHITESPACE, ($opener + 1), null, true);
+
+				if ($tokens[$prev]['line'] < $tokens[$opener]['line']
+					&& $tokens[$next]['line'] > $tokens[$opener]['line']
+				) {
+					// Clear the whole line.
+					for ($i = ($prev + 1); $i < $next; $i++) {
+						if ($tokens[$i]['line'] === $tokens[$opener]['line']) {
+							$phpcsFile->fixer->replaceToken($i, '');
+						}
+					}
+				} else {
+					// Just remove the opener.
+					$phpcsFile->fixer->replaceToken($opener, '');
+					if ($tokens[$next]['line'] === $tokens[$opener]['line']) {
+						$phpcsFile->fixer->replaceToken(($opener + 1), '');
+					}
+				}
+
+				$phpcsFile->fixer->endChangeset();
+			}//end if
+		} else {
+			$prev = $tokens[($opener - 1)];
+			if ($prev['code'] !== T_WHITESPACE) {
+				$length = 0;
+			} else {
+				$length = strlen($prev['content']);
+			}
+
+			if ($length !== 1) {
+				$error = 'There must be a single space between the closing parenthesis and the opening brace of a multi-line function declaration; found %s spaces';
+				$fix   = $phpcsFile->addFixableError($error, ($opener - 1), 'SpaceBeforeOpenBrace', [$length]);
+				if ($fix === true) {
+					if ($length === 0) {
+						$phpcsFile->fixer->addContentBefore($opener, ' ');
+					} else {
+						$phpcsFile->fixer->replaceToken(($opener - 1), ' ');
+					}
+				}
+
+				return;
+			}//end if
+		}//end if
 
 		$openBracket = $tokens[$stackPtr]['parenthesis_opener'];
 		$this->processBracket($phpcsFile, $openBracket, $tokens, 'function');
