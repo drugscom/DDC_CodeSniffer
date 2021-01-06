@@ -10,6 +10,7 @@
 		<exclude name="PSR2.ControlStructures.ElseIfDeclaration"/>
 		<exclude name="PSR2.Methods.FunctionCallSignature"/>
 		<exclude name="PSR12.Files.FileHeader"/>
+		<exclude name="PSR12.Functions.ReturnTypeDeclaration"/>
 		<exclude name="Squiz.ControlStructures.ControlSignature"/>
 		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration"/>
 	</rule>
