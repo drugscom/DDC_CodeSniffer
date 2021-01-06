@@ -72,4 +72,7 @@
 		<exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact"/>
 	</rule>
 
+	<rule ref="PHPCompatibility"/>
+	<config name="testVersion" value="7.3-"/>
+
 </ruleset>
