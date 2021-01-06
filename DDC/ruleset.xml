@@ -22,6 +22,14 @@
 	<config name="tabWidth" value="2"/>
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
 
+	<!-- Wrapping and Braces -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="120"/>
+			<property name="absoluteLineLimit" value="500"/>
+		</properties>
+	</rule>
+	
 	<!-- Code Conversion -->
 	<rule ref="Squiz.ControlStructures.ElseIfDeclaration"/>
 
