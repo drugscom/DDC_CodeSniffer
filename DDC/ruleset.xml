@@ -10,6 +10,7 @@
 		<exclude name="PSR2.ControlStructures.ElseIfDeclaration"/>
 		<exclude name="PSR2.Methods.FunctionCallSignature"/>
 		<exclude name="PSR12.Files.FileHeader"/>
+		<exclude name="Squiz.ControlStructures.ControlSignature"/>
 		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration"/>
 	</rule>
 
@@ -29,7 +30,7 @@
 			<property name="absoluteLineLimit" value="500"/>
 		</properties>
 	</rule>
-	
+
 	<!-- Code Conversion -->
 	<rule ref="Squiz.ControlStructures.ElseIfDeclaration"/>
 
