@@ -2,74 +2,55 @@
 <ruleset name="DDC">
 	<description>The DDC coding standard.</description>
 
-	<rule ref="PEAR">
-		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
-		<exclude name="Generic.Commenting.DocComment.NonParamGroup"/>
-		<exclude name="Generic.Commenting.DocComment.ParamGroup"/>
-		<exclude name="Generic.Commenting.DocComment.SpacingBeforeTags"/>
-		<exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
-		<exclude name="Generic.Files.LineLength.TooLong"/>
-		<exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound"/>
+	<rule ref="PHPCompatibility"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<rule ref="PSR12">
+		<!-- Use tabs for indenting -->
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
-		<exclude name="PEAR.Commenting.ClassComment.EmptyCopyright"/>
-		<exclude name="PEAR.Commenting.ClassComment.InvalidAuthors"/>
-		<exclude name="PEAR.Commenting.ClassComment.InvalidPackage"/>
-		<exclude name="PEAR.Commenting.ClassComment.InvalidVersion"/>
-		<exclude name="PEAR.Commenting.ClassComment.Missing"/>
-		<exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag"/>
-		<exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag"/>
-		<exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag"/>
-		<exclude name="PEAR.Commenting.ClassComment.MissingLinkTag"/>
-		<exclude name="PEAR.Commenting.ClassComment.MissingPackageTag"/>
-		<exclude name="PEAR.Commenting.ClassComment.MissingTag"/>
-		<exclude name="PEAR.Commenting.ClassComment.TagIndent"/>
-		<exclude name="PEAR.Commenting.ClassComment.WrongStyle"/>
-		<exclude name="PEAR.Commenting.FileComment.InvalidAuthors"/>
-		<exclude name="PEAR.Commenting.FileComment.Missing"/>
-		<exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
-		<exclude name="PEAR.Commenting.FileComment.MissingCategoryTag"/>
-		<exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
-		<exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
-		<exclude name="PEAR.Commenting.FileComment.MissingPackageTag"/>
-		<exclude name="PEAR.Commenting.FileComment.MissingTag"/>
-		<exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
-		<exclude name="PEAR.Commenting.FileComment.TagIndent"/>
-		<exclude name="PEAR.Commenting.FileComment.WrongStyle"/>
-		<exclude name="PEAR.Commenting.FunctionComment.Missing"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingCategoryTag"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingLicenseTag"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingLinkTag"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingParamComment"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingParamName"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingParamTag"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingReturn"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingReturnType"/>
-		<exclude name="PEAR.Commenting.FunctionComment.MissingVersion"/>
-		<exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamName"/>
-		<exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamType"/>
-		<exclude name="PEAR.Commenting.FunctionComment.WrongStyle"/>
-		<exclude name="PEAR.ControlStructures.ControlSignature"/>
-		<exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine"/>
-		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
-		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
-		<exclude name="PEAR.Functions.FunctionCallSignature.EmptyLine"/>
-		<exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
-		<exclude name="PEAR.Functions.FunctionDeclaration.NewlineBeforeOpenBrace"/>
-		<exclude name="PEAR.Functions.FunctionDeclaration.SpaceAfterFunction"/>
-		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid"/>
-		<exclude name="PEAR.NamingConventions.ValidClassName.StartWithCaptial"/>
-		<exclude name="PEAR.NamingConventions.ValidFunctionName.FunctionNoCapital"/>
-		<exclude name="PEAR.NamingConventions.ValidFunctionName.NotCamelCaps"/>
-		<exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
-		<exclude name="PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"/>
-		<exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
-		<exclude name="PEAR.NamingConventions.ValidVariableName.PublicUnderscore"/>
-		<exclude name="PEAR.NamingConventions.ValidVariableName.ScopeNotCamelCaps"/>
-		<exclude name="PEAR.WhiteSpace.ScopeClosingBrace.BreakIdent"/>
-		<exclude name="PEAR.WhiteSpace.ScopeClosingBrace.BreakIndent"/>
-		<exclude name="PEAR.WhiteSpace.ScopeClosingBrace.Indent"/>
-		<exclude name="PEAR.WhiteSpace.ScopeIndent.Incorrect"/>
-		<exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact"/>
+
+		<!-- Use Squiz "else if" instead of PSR12 "elseif" -->
+		<exclude name="PSR2.ControlStructures.ElseIfDeclaration"/>
+
+		<!-- Allow parameters after function call on multiline declarations -->
+		<exclude name="PSR2.Methods.FunctionCallSignature.ContentAfterOpenBracket"/>
+
+		<!-- Don't enforce new line after file header -->
+		<exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+
+		<!-- Enforce space before and after return type declarations -->
+		<!-- Enforced by DDC.Functions.ReturnTypeDeclaration -->
+		<exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon"/>
+
+		<!-- Enforce newline between closing braces and condition on control structures -->
+		<!-- Enforced by DDC.ControlStructures.ConditionNewLine -->
+		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+
+		<!-- Don't enforce space after function keyword for anonymous functions -->
+		<!-- Enforced by DDC.Functions.MultiLineFunctionDeclaration -->
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction"/>
 	</rule>
 
+	<!-- Tabs and Indents -->
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<properties>
+			<property name="tabIndent" value="true"/>
+		</properties>
+	</rule>
+	<config name="tabWidth" value="2"/>
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+	<!-- Wrapping and Braces -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="120"/>
+			<property name="absoluteLineLimit" value="500"/>
+		</properties>
+	</rule>
+
+	<!-- Code Conversion -->
+	<rule ref="Squiz.ControlStructures.ElseIfDeclaration"/>
+
+	<!-- Others -->
+	<rule ref="Squiz.Strings.DoubleQuoteUsage"/>
 </ruleset>
