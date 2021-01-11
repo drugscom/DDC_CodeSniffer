@@ -2,14 +2,12 @@
 /**
  * Ensure return types are defined correctly for functions and closures.
  *
- * Based on the PSR12 sniff, but allows space before return type declaration
- *
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @copyright 2006-2019 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  */
 
-namespace PHP_CodeSniffer\Standards\PSR12\Sniffs\Functions;
+namespace DDC\Sniffs\Functions;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
@@ -37,9 +35,9 @@ class ReturnTypeDeclarationSniff implements Sniff
     /**
      * Processes this test when one of its tokens is encountered.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token
-     *                                               in the stack passed in $tokens.
+     * @param File    $phpcsFile The file being scanned.
+     * @param integer $stackPtr  The position of the current token
+     *                           in the stack passed in $tokens.
      *
      * @return void
      */
@@ -86,7 +84,31 @@ class ReturnTypeDeclarationSniff implements Sniff
                 $phpcsFile->addError($error, $returnType, 'SpaceBeforeReturnType');
             }
         }
-        
+
+        $colon = $phpcsFile->findPrevious(T_COLON, $returnType);
+        if ($tokens[($colon - 1)]['code'] !== T_WHITESPACE
+            || $tokens[($colon - 1)]['content'] !== ' '
+            || $tokens[($colon - 2)]['code'] !== T_CLOSE_PARENTHESIS
+        ) {
+            $error = 'There must be a single space before the colon in a return type declaration';
+            $prev  = $phpcsFile->findPrevious(T_WHITESPACE, ($colon - 1), null, true);
+            if ($tokens[$prev]['code'] === T_CLOSE_PARENTHESIS) {
+                $fix = $phpcsFile->addFixableError($error, $colon, 'SpaceBeforeColon');
+                if ($fix === true) {
+                    $phpcsFile->fixer->beginChangeset();
+                    for ($x = ($prev + 1); $x < $colon; $x++) {
+                        $phpcsFile->fixer->replaceToken($x, '');
+                    }
+
+                    $phpcsFile->fixer->addContentBefore($colon, ' ');
+
+                    $phpcsFile->fixer->endChangeset();
+                }
+            } else {
+                $phpcsFile->addError($error, $colon, 'SpaceBeforeColon');
+            }
+        }
+
     }//end process()
 
 
