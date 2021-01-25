@@ -50,7 +50,4 @@
 
 	<!-- Code Conversion -->
 	<rule ref="Squiz.ControlStructures.ElseIfDeclaration"/>
-
-	<!-- Others -->
-	<rule ref="Squiz.Strings.DoubleQuoteUsage"/>
 </ruleset>
