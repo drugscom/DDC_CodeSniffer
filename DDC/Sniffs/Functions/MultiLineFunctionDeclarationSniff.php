@@ -76,27 +76,30 @@ class FunctionDeclarationSniff implements Sniff
         $closeBracket = $tokens[$stackPtr]['parenthesis_closer'];
 
         if (strtolower($tokens[$stackPtr]['content']) === 'function') {
-            // Must be one space after the FUNCTION keyword.
-            if ($tokens[($stackPtr + 1)]['content'] === $phpcsFile->eolChar) {
-                $spaces = 'newline';
-            } else if ($tokens[($stackPtr + 1)]['code'] === T_WHITESPACE) {
-                $spaces = $tokens[($stackPtr + 1)]['length'];
-            } else {
-                $spaces = 0;
-            }
+            // Ignore anonymous function declarations.
+            if ($tokens[($stackPtr + 1)] !== $openBracket) {
+                // Must be one space after the FUNCTION keyword.
+                if ($tokens[($stackPtr + 1)]['content'] === $phpcsFile->eolChar) {
+                    $spaces = 'newline';
+                } else if ($tokens[($stackPtr + 1)]['code'] === T_WHITESPACE) {
+                    $spaces = $tokens[($stackPtr + 1)]['length'];
+                } else {
+                    $spaces = 0;
+                }
 
-            if ($spaces !== 1) {
-                $error = 'Expected 1 space after FUNCTION keyword; %s found';
-                $data  = [$spaces];
-                $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'SpaceAfterFunction', $data);
-                if ($fix === true) {
-                    if ($spaces === 0) {
-                        $phpcsFile->fixer->addContent($stackPtr, ' ');
-                    } else {
-                        $phpcsFile->fixer->replaceToken(($stackPtr + 1), ' ');
+                if ($spaces !== 1) {
+                    $error = 'Expected 1 space after FUNCTION keyword; %s found';
+                    $data  = [$spaces];
+                    $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'SpaceAfterFunction', $data);
+                    if ($fix === true) {
+                        if ($spaces === 0) {
+                            $phpcsFile->fixer->addContent($stackPtr, ' ');
+                        } else {
+                            $phpcsFile->fixer->replaceToken(($stackPtr + 1), ' ');
+                        }
                     }
                 }
-            }
+            }//end if
         }//end if
 
         // Must be no space before the opening parenthesis. For closures, this is
