@@ -76,17 +76,27 @@ class FunctionDeclarationSniff implements Sniff
         $closeBracket = $tokens[$stackPtr]['parenthesis_closer'];
 
         if (strtolower($tokens[$stackPtr]['content']) === 'function') {
-            // Ignore anonymous function declarations.
-            if (($stackPtr + 1) !== $openBracket) {
-                // Must be one space after the FUNCTION keyword.
-                if ($tokens[($stackPtr + 1)]['content'] === $phpcsFile->eolChar) {
-                    $spaces = 'newline';
-                } else if ($tokens[($stackPtr + 1)]['code'] === T_WHITESPACE) {
-                    $spaces = $tokens[($stackPtr + 1)]['length'];
-                } else {
-                    $spaces = 0;
-                }
+            if ($tokens[($stackPtr + 1)]['content'] === $phpcsFile->eolChar) {
+                $spaces = 'newline';
+            } else if ($tokens[($stackPtr + 1)]['code'] === T_WHITESPACE) {
+                $spaces = $tokens[($stackPtr + 1)]['length'];
+            } else {
+                $spaces = 0;
+            }
 
+            // Check if anonymous function declaration.
+            if (($stackPtr + 1) === $openBracket) {
+                // Must be no spaces after the FUNCTION keyword on anonymous declarations.
+                if ($spaces !== 0) {
+                    $error = 'Expected no spaces after FUNCTION keyword on anonymous declaration; %s found';
+                    $data  = [$spaces];
+                    $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'NoSpaceAfterAnonFunction', $data);
+                    if ($fix === true) {
+                        $phpcsFile->fixer->replaceToken(($stackPtr + 1), '');
+                    }
+                }
+            } else {
+                // Must be one space after the FUNCTION keyword.
                 if ($spaces !== 1) {
                     $error = 'Expected 1 space after FUNCTION keyword; %s found';
                     $data  = [$spaces];
