@@ -85,7 +85,7 @@ class FunctionDeclarationSniff implements Sniff
             }
 
             // Check if anonymous function declaration.
-            if (($stackPtr + 1) === $openBracket) {
+            if ($phpcsFile->getDeclarationName($stackPtr) === null) {
                 // Must be no spaces after the FUNCTION keyword on anonymous declarations.
                 if ($spaces !== 0) {
                     $error = 'Expected no spaces after FUNCTION keyword on anonymous declaration; %s found';
