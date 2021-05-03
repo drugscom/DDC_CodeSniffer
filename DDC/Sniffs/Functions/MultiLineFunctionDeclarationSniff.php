@@ -77,7 +77,7 @@ class FunctionDeclarationSniff implements Sniff
 
         if (strtolower($tokens[$stackPtr]['content']) === 'function') {
             // Ignore anonymous function declarations.
-            if ($tokens[($stackPtr + 1)] !== $openBracket) {
+            if (($stackPtr + 1) !== $openBracket) {
                 // Must be one space after the FUNCTION keyword.
                 if ($tokens[($stackPtr + 1)]['content'] === $phpcsFile->eolChar) {
                     $spaces = 'newline';
