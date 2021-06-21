@@ -50,4 +50,15 @@
 
 	<!-- Code Conversion -->
 	<rule ref="Squiz.ControlStructures.ElseIfDeclaration"/>
+
+	<!-- Code Generation -->
+	<rule ref="Generic.NamingConventions.ConstructorName"/>
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+	<rule ref="Squiz.Classes.ValidClassName"/>
+	<rule ref="Squiz.NamingConventions.ValidFunctionName">
+		<exclude name="Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
+	</rule>
+	<rule ref="Squiz.NamingConventions.ValidVariableName">
+		<exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
+	</rule>
 </ruleset>
